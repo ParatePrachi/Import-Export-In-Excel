@@ -1,0 +1,53 @@
+﻿@*@addTagHelper*,Microsoft.AspNetCore.Mvc.TagHelpers*@
+@using System.Data
+@model DataSet
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script src="~/Content/Employee.js"></script>
+
+<table cellpadding="0" cellspacing="0">
+    <tr>
+        <th>EmpId</th>
+        <th>EmpName</th>
+        <th>EmpAddress</th>
+        <th>EmpSalary</th>
+        <th>Job</th>
+    </tr>
+    @foreach (DataRow row in Model.Tables[0].Rows)
+    {
+        <tr>
+            <td>@row["EmpId"]</td>
+            <td>@row["EmpName"]</td>
+            <td>@row["EmpAddress"]</td>
+            <td>@row["EmpSalary"]</td>
+            <td>@row["Job"]</td>
+        </tr>
+    }
+</table>
+<br />
+@*<form method="post" asp-controller="Employee" asp-action="Export">
+    <input type="submit" value="Export" />
+</form>*@
+@using (Html.BeginForm("Export", "Employee", FormMethod.Post))
+{
+    <input type="submit" value="Export" />
+}
+
+@*<table id="tblemployee" border="1">
+        <thead>
+            <tr>
+                <th>EmpId</th>
+                <th>EmpName</th>
+                <th>EmpAddress</th>
+                <th>EmpSalary</th>
+                <th>Job</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>*@
+
+
